@@ -162,7 +162,7 @@ extern int dbg;
 #endif
 
 int 
-main(int ac, char **av)
+lmdd(int ac, char **av)
 {
 	uint  *buf;
 	uint  *bufs[10];
@@ -188,6 +188,7 @@ main(int ac, char **av)
 	for (i = 1; i < ac; ++i) {
 		chkarg(av[i]);
 	}
+
 	signal(SIGINT, done);
 	signal(SIGALRM, done);
 	misses = mismatch = getarg("mismatch=", ac, av);
