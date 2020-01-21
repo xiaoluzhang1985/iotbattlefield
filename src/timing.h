@@ -9,7 +9,7 @@ char	*p64sz(uint64 big);
 double	Delta(void);
 double	Now(void);
 void	adjust(int usec);
-void	bandwidth(uint64 bytes, uint64 times, int verbose);
+void	bandwidth(uint64 bytes, uint64 times, int verbose, char** retval);
 uint64	bytes(char *s);
 void	context(uint64 xfers);
 uint64	delta(void);

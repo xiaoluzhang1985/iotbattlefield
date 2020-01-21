@@ -161,7 +161,11 @@ void    done();
 extern int dbg;
 #endif
 
-int 
+/*Added by xiaolu*/
+//char* output;
+/**/
+
+void
 lmdd(int ac, char **av)
 {
 	uint  *buf;
@@ -634,7 +638,7 @@ chkarg(char *arg)
 	/*NOTREACHED*/
 }
 
-void 
+void
 done(void)
 {
 	int	i;
@@ -666,6 +670,9 @@ done(void)
 		fprintf(stderr, "%s", Label);
 	}
 	int_count <<= 2;
+	
+	char* retval;	/* xiaolu: being able to capture the output at here*/
+
 	switch (Print) {
 	    case 0:	/* no print out */
 	    	break;
@@ -687,11 +694,12 @@ done(void)
 		break;
 
 	    case 5:	/* Xgraph output */
-		bandwidth(int_count, 1, 0);
+		//bandwidth(int_count, 1, 0);
 		break;
 
 	    default:	/* bandwidth print out */
-		bandwidth(int_count, 1, 1);
+		
+		bandwidth(int_count,1,1,&retval);
 		break;
 	}
 	if (Rtmax != -1) {
