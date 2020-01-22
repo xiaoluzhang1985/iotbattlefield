@@ -161,13 +161,14 @@ void    done();
 extern int dbg;
 #endif
 
-/*Added by xiaolu*/
-//char* output;
+/*--Added--*/
+char* retd;
 /**/
 
 void
-lmdd(int ac, char **av)
+lmdd(int ac, char **av, char *report)
 {
+	retd = report;
 	uint  *buf;
 	uint  *bufs[10];
 	int	nbufs, nextbuf = 0;
@@ -346,8 +347,9 @@ lmdd(int ac, char **av)
 
 		if (gotcnt && count-- <= 0) {
 			done();
+			
 		}
-
+	
 		/*
 		 * If End is set, it means alternate back and forth
 		 * between the end points of Rand, doing randoms within
@@ -459,6 +461,8 @@ lmdd(int ac, char **av)
 		}
 		if (moved <= 0) {
 			done();
+			
+			
 		}
 		if (inpat != -1) {
 			register int foo, cnt;
@@ -472,10 +476,12 @@ lmdd(int ac, char **av)
 					    buf[foo]);
 					if (mismatch != -1 && --misses == 0) {
 						done();
+			
 					}
 				}
 			}
 		}
+		
 		if ((in >= 0) && touch) {
 			int	i;
 
@@ -574,6 +580,7 @@ lmdd(int ac, char **av)
 			}
 			if (moved2 != moved) {
 				done();
+	
 			}
 
 			if (touch) {
@@ -583,7 +590,12 @@ lmdd(int ac, char **av)
 					((char *)buf)[i] = 0;
 				}
 			}
+
+		
+
+		
 		}
+
 #ifdef	USE_BDS
 writedone:	/* for the first async write */
 #endif
@@ -600,7 +612,11 @@ writedone:	/* for the first async write */
 		if (Fork != -1) {
 			exit(0);
 		}
-	}
+		
+
+	};
+	
+		
 }
 
 int
@@ -671,8 +687,6 @@ done(void)
 	}
 	int_count <<= 2;
 	
-	char* retval;	/* xiaolu: being able to capture the output at here*/
-
 	switch (Print) {
 	    case 0:	/* no print out */
 	    	break;
@@ -694,14 +708,15 @@ done(void)
 		break;
 
 	    case 5:	/* Xgraph output */
-		//bandwidth(int_count, 1, 0);
+		bandwidth(int_count, 1, 0, retd);
 		break;
 
 	    default:	/* bandwidth print out */
 		
-		bandwidth(int_count,1,1,&retval);
+		bandwidth(int_count,1, 1, retd);
 		break;
 	}
+	
 	if (Rtmax != -1) {
 		printf("READ operation latencies\n");
 		step = (Rtmax - Rtmin) / 10;

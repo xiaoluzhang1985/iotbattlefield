@@ -3,28 +3,31 @@
 #include<sys/socket.h>
 #include<arpa/inet.h>
 #include<unistd.h>
-
+#include<stdlib.h>
 
 #include"lmdd.h"
 
-#define	DEBUG
+//#define	DEBUG
 
 
 int recgarg(char* arg);
 void send2srv();
-char lmddarg[4]={"lmdd"};
+char *lmddarg ="lmdd";
 
 
 void main(int argc, char* argv[]){
 	int args;
 	int ar;
+	char* lmdd_rep=(char *)malloc(80);
 	for(args=1; args < argc ;args++){
 		switch(recgarg(argv[args])){
 			case 1:	//lmdd
 				ar=4;
 				char*av[]={"lmdd","if=internal","of=internal","count=1000"};
-				char*output = lmdd(ar,av);	
-				printf("%s",output);	
+				memset(lmdd_rep,'0',80);
+				lmdd(ar, av, lmdd_rep);	
+				free(lmdd_rep);
+				printf("main: %d\n",lmdd_rep);
 			case 2:
 
 			default:
@@ -37,12 +40,13 @@ void main(int argc, char* argv[]){
 }
 
 int recgarg(char* arg){
-	if (!strcmp(lmddarg,arg)){
+	if (strcmp(lmddarg,arg)==0){
 		#ifdef DEBUG
-		printf("%s\n",arg);
+		printf("argument is %s\n",arg);
 		#endif
 		return 1;
-	}
+	}else
+		return 2;
 	//if(!strcmp(cmd,arg)){
 	//	
 	//}

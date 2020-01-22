@@ -895,7 +895,7 @@ settime(uint64 usecs)
 }
 
 void
-bandwidth(uint64 bytes, uint64 times, int verbose, char** retval)
+bandwidth(uint64 bytes, uint64 times, int verbose, char* retval)
 {
 	struct timeval tdiff;
 	double  mb, secs;
@@ -908,12 +908,12 @@ bandwidth(uint64 bytes, uint64 times, int verbose, char** retval)
 	secs /= times;
 	mb = bytes / MB;
 	if (!ftiming) ftiming = stderr;
-	char* lmbbop=mem_alloc(40);
+	char * str[80];	
 	if (verbose) {
-		(void) sprintf(lmbbop,
+		(void) sprintf(str,
 		    "%.4f MB in %.4f secs, %.4f MB/sec\n",
 		    mb, secs, mb/secs);//where lmbb's  output came from
-		*retval= lmbbop;
+		strncpy(retval,str,strlen((char*)str)+1);
 	} else {
 		if (mb < 1) {
 			(void) fprintf(ftiming, "%.6f ", mb);
