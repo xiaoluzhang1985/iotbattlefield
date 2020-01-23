@@ -16,9 +16,9 @@ int main(){
 	listen(srv_sock,20);
 	socklen_t clnt_addr_size = sizeof(clnt_addr);
 	int clnt_sock = accept(srv_sock, (struct sockaddr*)& clnt_addr, &clnt_addr_size);
-	char buffer[40];
+	char buffer[80];
 	read(clnt_sock,buffer,sizeof(buffer));
-	printf("%s",buffer);
+	printf("%s\n",buffer);
 	close(srv_sock);
 
 	return 0;

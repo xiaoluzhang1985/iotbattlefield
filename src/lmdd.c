@@ -347,6 +347,8 @@ lmdd(int ac, char **av, char *report)
 
 		if (gotcnt && count-- <= 0) {
 			done();
+			return   0;
+			
 			
 		}
 	
@@ -460,8 +462,7 @@ lmdd(int ac, char **av, char *report)
 			perror("read");
 		}
 		if (moved <= 0) {
-			done();
-			
+			done(); return   0;
 			
 		}
 		if (inpat != -1) {
@@ -475,7 +476,8 @@ lmdd(int ac, char **av, char *report)
 					    (uint)(off + foo*sizeof(int)),
 					    buf[foo]);
 					if (mismatch != -1 && --misses == 0) {
-						done();
+						done(); return   0;
+				
 			
 					}
 				}
@@ -542,7 +544,8 @@ lmdd(int ac, char **av, char *report)
 			if (moved2 != moved) {
 				fprintf(stderr, "write: wanted=%d got=%d\n",
 				    moved, moved2);
-				done();
+				done(); return   0;
+			
 			}
 			if ((Wtmax != -1) || (Wtmin != -1)) {
 				int mics = stop(&start_tv, &stop_tv);
@@ -579,7 +582,7 @@ lmdd(int ac, char **av, char *report)
 				perror("write");
 			}
 			if (moved2 != moved) {
-				done();
+				done(); return   0;
 	
 			}
 
@@ -749,7 +752,7 @@ done(void)
 			printf("%d+ ms: %d\n", Wtmax, wthist[11]);
 		}
 	}
-	exit(0);
+	return 0;
 }
 
 uint64 

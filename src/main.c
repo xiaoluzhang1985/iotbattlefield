@@ -24,10 +24,12 @@ void main(int argc, char* argv[]){
 			case 1:	//lmdd
 				ar=4;
 				char*av[]={"lmdd","if=internal","of=internal","count=1000"};
-				memset(lmdd_rep,'0',80);
-				lmdd(ar, av, lmdd_rep);	
-				free(lmdd_rep);
-				printf("main: %d\n",lmdd_rep);
+				memset(lmdd_rep,0,80);
+				lmdd(ar, av, lmdd_rep);		
+#ifdef DEBUG
+				fprintf(stderr,"main: %s\n",lmdd_rep);
+#endif
+				send2srv(lmdd_rep);
 			case 2:
 
 			default:
@@ -35,8 +37,8 @@ void main(int argc, char* argv[]){
 		}	
 
 	}	
-	send2srv();
-	
+	char * test="test\n";
+	send2srv(test);
 }
 
 int recgarg(char* arg){
@@ -53,7 +55,7 @@ int recgarg(char* arg){
 
 }
 
-void send2srv(){
+void send2srv(char *text){
 	struct sockaddr_in srv_addr;
 	int sock = socket(AF_INET, SOCK_STREAM, 0);
 	memset(&srv_addr,0,sizeof(srv_addr));
@@ -61,9 +63,7 @@ void send2srv(){
 	srv_addr.sin_addr.s_addr=inet_addr("127.0.0.1");
 	srv_addr.sin_port=htons(1985);
 	connect(sock, (struct sockaddr*)&srv_addr, sizeof(srv_addr));
-
-	char buffer[]="test data";
-	write(sock,buffer,sizeof(buffer));
+	write(sock,text,strlen(text));
 	close(sock);
 
 }

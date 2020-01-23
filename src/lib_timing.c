@@ -913,7 +913,7 @@ bandwidth(uint64 bytes, uint64 times, int verbose, char* retval)
 		(void) sprintf(str,
 		    "%.4f MB in %.4f secs, %.4f MB/sec\n",
 		    mb, secs, mb/secs);//where lmbb's  output came from
-		strncpy(retval,str,strlen((char*)str)+1);
+		strncpy(retval,str,strlen((char*)str));
 	} else {
 		if (mb < 1) {
 			(void) fprintf(ftiming, "%.6f ", mb);
