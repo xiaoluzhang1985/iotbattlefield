@@ -1,0 +1,55 @@
+		doc	para
+bw_file_rd	*
+bw_mem		
+	-bw_mem_cp
+	-bw_mem_rd
+	-bw_mem_wr
+bw_mmap_rd	*
+bw_pipe		*	*
+bw_tcp		*
+bw_unix		*	*
+
+lat_connect	*
+lat_ctx		*
+lat_fcntl	*
+lat_fifo	*	*
+lat_fs		*
+lat_mem_rd	*
+lat_mmap	*
+lat_ops		*
+lat_pagefault	*
+lat_pipe	*	*
+lat_proc	*
+lat_rpc		*
+lat_select	*	*
+lat_sig		*
+lat_syscall	*
+lat_tcp		*
+lat_udp		*
+lat_unix	*
+lat_unix_connect*
+lat_usleep
+lat_cmd	
+lat_sem			*
+lat_pmake
+lat_rand		*
+lat_http
+lat_dram_page
+
+cache		*	*
+disk
+
+
+
+line		*
+mhz		*	*
+par_mem		*	*
+par_ops		*	*
+stream		*	*
+tlb		*	*
+msleep
+lmbench
+lmdd
+lmhttp
+memsize
+
