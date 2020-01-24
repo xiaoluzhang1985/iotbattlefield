@@ -1,24 +1,24 @@
-		doc	para
+		doc	para	done
 bw_file_rd	*
 bw_mem		
 	-bw_mem_cp
 	-bw_mem_rd
 	-bw_mem_wr
 bw_mmap_rd	*
-bw_pipe		*	*
+bw_pipe		*	*	
 bw_tcp		*
 bw_unix		*	*
 
 lat_connect	*
 lat_ctx		*
 lat_fcntl	*
-lat_fifo	*	*
+lat_fifo	*	*	
 lat_fs		*
 lat_mem_rd	*
 lat_mmap	*
 lat_ops		*
 lat_pagefault	*
-lat_pipe	*	*
+lat_pipe	*	*	*
 lat_proc	*
 lat_rpc		*
 lat_select	*	*
@@ -49,7 +49,7 @@ stream		*	*
 tlb		*	*
 msleep
 lmbench
-lmdd
+lmdd				*
 lmhttp
 memsize
 

@@ -6,14 +6,14 @@
 #include<stdlib.h>
 
 #include"lmdd.h"
-
+#include"lat_pipe.h"
 //#define	DEBUG
 
 
 int recgarg(char* arg);
 void send2srv();
 char *lmddarg ="lmdd";
-
+char *pipearg ="lat_pipe";
 
 void main(int argc, char* argv[]){
 	int args;
@@ -23,36 +23,47 @@ void main(int argc, char* argv[]){
 		switch(recgarg(argv[args])){
 			case 1:	//lmdd
 				ar=4;
-				char*av[]={"lmdd","if=internal","of=internal","count=1000"};
+				char*lmdd_av[]={lmddarg,"if=internal","of=internal","count=1000"};
 				memset(lmdd_rep,0,80);
-				lmdd(ar, av, lmdd_rep);		
+				lmdd(ar,lmdd_av, lmdd_rep);		
 #ifdef DEBUG
-				fprintf(stderr,"main: %s\n",lmdd_rep);
+				printf("main: %s\n",lmdd_rep);
 #endif
 				send2srv(lmdd_rep);
-			case 2:
-
+				break;
+			case 2://lat_pipe
+				ar=1;
+				char* lat_pipe_av[]={pipearg};
+				lat_pipe(ar,lat_pipe_av,lmdd_rep);
+#ifdef DEBUG
+				printf("main: \n");
+#endif
+	
+				break;
 			default:
-			return;
+				exit(0);
+			
 		}	
 
 	}	
-	char * test="test\n";
-	send2srv(test);
 }
 
 int recgarg(char* arg){
-	if (strcmp(lmddarg,arg)==0){
-		#ifdef DEBUG
-		printf("argument is %s\n",arg);
-		#endif
+	#ifdef DEBUG
+	printf("argument is %s\n",arg);
+	#endif
+	
+
+	if (strcmp(lmddarg,arg)==0)
 		return 1;
-	}else
+	
+       	if (strcmp(pipearg,arg)==0)
 		return 2;
-	//if(!strcmp(cmd,arg)){
+		
+	//else if(!strcmp(cmd,arg)){
 	//	
 	//}
-
+return -1;
 }
 
 void send2srv(char *text){
