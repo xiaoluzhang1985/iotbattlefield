@@ -699,7 +699,7 @@ done(void)
 		break;
 
 	    case 2:	/* microsecond per op print out */
-		micro("", (uint64)(int_count / Bsize));
+		micro("", (uint64)(int_count / Bsize),NULL);
 		break;
 
 	    case 3:	/* kb / sec print out */

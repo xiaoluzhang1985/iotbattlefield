@@ -20,7 +20,7 @@ double	l_overhead(void);
 char	last(char *s);
 void	latency(uint64 xfers, uint64 size);
 void	mb(uint64 bytes);
-void	micro(char *s, uint64 n);
+void	micro(char *s, uint64 n, char* ret);
 void	micromb(uint64 mb, uint64 n);
 void	milli(char *s, uint64 n);
 void	morefds(void);

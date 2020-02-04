@@ -907,13 +907,12 @@ bandwidth(uint64 bytes, uint64 times, int verbose, char* retval)
 	secs /= 1000000;
 	secs /= times;
 	mb = bytes / MB;
-	if (!ftiming) ftiming = stderr;
-	char * str[80];	
+	if (!ftiming) ftiming = stderr;	
 	if (verbose) {
-		(void) sprintf(str,
+		(void) sprintf(ftiming,
 		    "%.4f MB in %.4f secs, %.4f MB/sec\n",
 		    mb, secs, mb/secs);//where lmbb's  output came from
-		strncpy(retval,str,strlen((char*)str));
+		strncat(retval,ftiming,strlen((char*)ftiming));
 	} else {
 		if (mb < 1) {
 			(void) fprintf(ftiming, "%.6f ", mb);
@@ -1016,17 +1015,22 @@ nano(char *s, uint64 n)
 }
 
 void
-micro(char *s, uint64 n)
+micro(char *s, uint64 n, char* ret)
 {
 	struct timeval td;
 	double	micro;
+	char* str=(char*)malloc(80);
 
 	tvsub(&td, &stop_tv, &start_tv);
 	micro = td.tv_sec * 1000000 + td.tv_usec;
 	micro /= n;
 	if (micro == 0.0) return;
 	if (!ftiming) ftiming = stderr;
-	fprintf(ftiming, "%s: %.4f microseconds\n", s, micro);
+	sprintf(str, "%s: %.4f microseconds\n", s, micro);
+
+	strncat(ret,str,strlen(str));
+	free(str);
+
 #if 0
 	if (micro >= 100) {
 		fprintf(ftiming, "%s: %.1f microseconds\n", s, micro);

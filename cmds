@@ -1,4 +1,4 @@
-		doc	para	done
+		doc	non-para	done
 bw_file_rd	*
 bw_mem		
 	-bw_mem_cp
@@ -18,10 +18,10 @@ lat_mem_rd	*
 lat_mmap	*
 lat_ops		*
 lat_pagefault	*
-lat_pipe	*	*	*
+lat_pipe	*	*		*
 lat_proc	*
 lat_rpc		*
-lat_select	*	*
+lat_select	*	*		*
 lat_sig		*
 lat_syscall	*
 lat_tcp		*
@@ -49,7 +49,7 @@ stream		*	*
 tlb		*	*
 msleep
 lmbench
-lmdd				*
+lmdd					*
 lmhttp
 memsize
 

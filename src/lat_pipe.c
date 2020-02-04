@@ -13,9 +13,9 @@
 
 #include "bench.h"
 
-void initialize(iter_t iterations, void *cookie);
-void cleanup(iter_t iterations, void *cookie);
-void doit(iter_t iterations, void *cookie);
+static void initialize(iter_t iterations, void *cookie);
+static void cleanup(iter_t iterations, void *cookie);
+static void doit(iter_t iterations, void *cookie);
 void writer(int w, int r);
 
 typedef struct _state {
@@ -25,7 +25,7 @@ typedef struct _state {
 } state_t;
 
 int 
-lat_pipe(int ac, char **av)
+lat_pipe(int ac, char **av, char* retd)
 {
 	state_t state;
 	int parallel = 1;
@@ -59,11 +59,12 @@ lat_pipe(int ac, char **av)
 
 	benchmp(initialize, doit, cleanup, SHORT, parallel, 
 		warmup, repetitions, &state);
-	micro("Pipe latency", get_n());
+	
+	micro("Pipe latency", get_n(),retd);
 	return (0);
 }
 
-void 
+static void 
 initialize(iter_t iterations, void* cookie)
 {
 	char	c;
@@ -108,7 +109,7 @@ initialize(iter_t iterations, void* cookie)
 	}
 }
 
-void 
+static void 
 cleanup(iter_t iterations, void* cookie)
 {
 	state_t * state = (state_t *)cookie;
@@ -122,7 +123,7 @@ cleanup(iter_t iterations, void* cookie)
 	}
 }
 
-void 
+static void 
 doit(register iter_t iterations, void *cookie)
 {
 	state_t *state = (state_t *) cookie;
