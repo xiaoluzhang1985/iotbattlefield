@@ -16,7 +16,7 @@ void send2srv();
 char *lmddarg ="lmdd";
 char *pipearg ="lat_pipe";
 char *selectarg="lat_select";
-
+char *semarg="lat_sem";
 void main(int argc, char* argv[]){
 	int args;
 	int ar;
@@ -58,6 +58,19 @@ void main(int argc, char* argv[]){
 	
 				break;
 
+			case 4://lat_sem
+		
+				ar=1;
+				char* lat_sem_av[]={semarg};
+				lat_sem(ar,lat_sem_av,ret_str);
+#ifdef DEBUG
+				printf("main: %s\n",ret_str);
+#endif				
+	
+				break;
+
+			
+			
 			default:
 				break;
 			
@@ -82,7 +95,10 @@ int recgarg(char* arg){
 		return 2;
 
 	if (strcmp(selectarg,arg)==0)
-		return 3;
+		return 3;	
+
+	if (strcmp(semarg,arg)==0)
+		return 4;
 	//else if(!strcmp(cmd,arg)){
 	//	
 	//}
