@@ -1001,17 +1001,21 @@ context(uint64 xfers)
 }
 
 void
-nano(char *s, uint64 n)
+nano(char *s, uint64 n, char* ret)
 {
 	struct timeval td;
 	double  micro;
+	char* str=(char*)malloc(80);
 
 	tvsub(&td, &stop_tv, &start_tv);
 	micro = td.tv_sec * 1000000 + td.tv_usec;
 	micro *= 1000;
 	if (micro == 0.0) return;
 	if (!ftiming) ftiming = stderr;
-	fprintf(ftiming, "%s: %.2f nanoseconds\n", s, micro / n);
+	sprintf(str, "%s: %.2f nanoseconds\n", s, micro / n);	
+	strncat(ret,str,strlen(str));
+	free(str);
+
 }
 
 void

@@ -17,6 +17,8 @@ char *lmddarg ="lmdd";
 char *pipearg ="lat_pipe";
 char *selectarg="lat_select";
 char *semarg="lat_sem";
+char *randarg="lat_rand";
+
 void main(int argc, char* argv[]){
 	int args;
 	int ar;
@@ -69,7 +71,18 @@ void main(int argc, char* argv[]){
 	
 				break;
 
-			
+			case 5://lat_rand
+		
+				ar=1;
+				char* lat_rand_av[]={randarg};
+				lat_rand(ar,lat_rand_av,ret_str);
+#ifdef DEBUG
+				printf("main: %s\n",ret_str);
+#endif				
+	
+				break;
+
+		
 			
 			default:
 				break;
@@ -99,6 +112,11 @@ int recgarg(char* arg){
 
 	if (strcmp(semarg,arg)==0)
 		return 4;
+
+	if (strcmp(randarg,arg)==0)
+		return 5;
+
+
 	//else if(!strcmp(cmd,arg)){
 	//	
 	//}

@@ -24,7 +24,7 @@ void	micro(char *s, uint64 n, char* ret);
 void	micromb(uint64 mb, uint64 n);
 void	milli(char *s, uint64 n);
 void	morefds(void);
-void	nano(char *s, uint64 n);
+void	nano(char *s, uint64 ni, char* ret);
 uint64	now(void);
 void	ptime(uint64 n);
 void	rusage(void);
