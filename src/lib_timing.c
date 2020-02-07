@@ -1005,7 +1005,7 @@ nano(char *s, uint64 n, char* ret)
 {
 	struct timeval td;
 	double  micro;
-	char* str=(char*)malloc(80);
+	char* str=(char*)malloc(800);
 
 	tvsub(&td, &stop_tv, &start_tv);
 	micro = td.tv_sec * 1000000 + td.tv_usec;
@@ -1023,7 +1023,7 @@ micro(char *s, uint64 n, char* ret)
 {
 	struct timeval td;
 	double	micro;
-	char* str=(char*)malloc(80);
+	char* str=(char*)malloc(800);
 
 	tvsub(&td, &stop_tv, &start_tv);
 	micro = td.tv_sec * 1000000 + td.tv_usec;
