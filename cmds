@@ -11,7 +11,7 @@ bw_unix		*	*
 
 lat_connect	*
 lat_ctx		*
-lat_fcntl	*
+lat_fcntl	*	*		*	
 lat_fifo	*	*	
 lat_fs		*
 lat_mem_rd	*

@@ -19,6 +19,8 @@ char *selectarg="lat_select";
 char *semarg="lat_sem";
 char *randarg="lat_rand";
 char *opsarg="lat_ops";
+char *fcntlarg="lat_fcntl";
+
 void main(int argc, char* argv[]){
 	int args;
 	int ar;
@@ -92,6 +94,17 @@ void main(int argc, char* argv[]){
 #endif				
 	
 				break;
+	
+			case 7://lat_fcntl
+		
+				ar=1;
+				char* lat_fcntl_av[]={fcntlarg};
+				lat_fcntl(ar,lat_fcntl_av,ret_str);
+#ifdef DEBUG
+				printf("main: %s\n",ret_str);
+#endif				
+	
+				break;
 			
 			default:
 				break;
@@ -127,6 +140,10 @@ int recgarg(char* arg){
 
 	if (strcmp(opsarg,arg)==0)
 		return 6;
+
+	if (strcmp(fcntlarg,arg)==0)
+		return 7;
+
 
 
 	//else if(!strcmp(cmd,arg)){

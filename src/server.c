@@ -18,7 +18,9 @@ int main(){
 	int clnt_sock = accept(srv_sock, (struct sockaddr*)& clnt_addr, &clnt_addr_size);
 	
 	char buffer[800];
-	read(clnt_sock,buffer,sizeof(buffer));
+
+	int endmark = recv(clnt_sock,buffer,sizeof(buffer),0);
+	buffer[endmark]='\0';
 	printf("%s\n",buffer);
 	close(srv_sock);
 	
