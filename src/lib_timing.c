@@ -1031,7 +1031,6 @@ micro(char *s, uint64 n, char* ret)
 	if (micro == 0.0) return;
 	if (!ftiming) ftiming = stderr;
 	sprintf(str, "%s: %.4f microseconds\n", s, micro);
-
 	strncat(ret,str,strlen(str));
 	free(str);
 

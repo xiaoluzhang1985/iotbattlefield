@@ -21,6 +21,7 @@ char *randarg="lat_rand";
 char *opsarg="lat_ops";
 char *fcntlarg="lat_fcntl";
 char *fifoarg="lat_fifo";
+char *fsarg="lat_fs";
 
 void main(int argc, char* argv[]){
 	int args;
@@ -118,6 +119,17 @@ void main(int argc, char* argv[]){
 	
 				break;
 			
+			case 9://lat_fs
+		
+				ar=3;
+				char* lat_fs_av[]={fsarg, "-s", "1024"};//1k file
+				lat_fs(ar,lat_fs_av,ret_str);
+#ifdef DEBUG
+				printf("main: %s\n",ret_str);
+#endif				
+	
+				break;
+				
 
 			default:
 				break;
@@ -159,6 +171,9 @@ int recgarg(char* arg){
 
 	if (strcmp(fifoarg,arg)==0)
 		return 8;
+
+	if (strcmp(fsarg,arg)==0)
+		return 9;
 
 
 
