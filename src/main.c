@@ -20,6 +20,7 @@ char *semarg="lat_sem";
 char *randarg="lat_rand";
 char *opsarg="lat_ops";
 char *fcntlarg="lat_fcntl";
+char *fifoarg="lat_fifo";
 
 void main(int argc, char* argv[]){
 	int args;
@@ -106,6 +107,18 @@ void main(int argc, char* argv[]){
 	
 				break;
 			
+			case 8://lat_fifo
+		
+				ar=1;
+				char* lat_fifo_av[]={fifoarg};
+				lat_fifo(ar,lat_fifo_av,ret_str);
+#ifdef DEBUG
+				printf("main: %s\n",ret_str);
+#endif				
+	
+				break;
+			
+
 			default:
 				break;
 			
@@ -143,6 +156,9 @@ int recgarg(char* arg){
 
 	if (strcmp(fcntlarg,arg)==0)
 		return 7;
+
+	if (strcmp(fifoarg,arg)==0)
+		return 8;
 
 
 
