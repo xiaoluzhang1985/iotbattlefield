@@ -23,6 +23,8 @@ char *fcntlarg="lat_fcntl";
 char *fifoarg="lat_fifo";
 char *fsarg="lat_fs";
 char *procarg="lat_proc";
+char *sigarg="lat_sig";
+
 void main(int argc, char* argv[]){
 	int args;
 	int ar;
@@ -141,6 +143,21 @@ void main(int argc, char* argv[]){
 	
 				break;
 	
+			case 11://lat_sig
+		
+				ar=2;
+				char* lat_sig_install_av[]={sigarg, "install"};//sig handler install
+				char* lat_sig_overhead_av[]={sigarg, "catch"};//sig handler overhead
+				lat_sig(ar,lat_sig_install_av,ret_str);
+				lat_sig(ar,lat_sig_overhead_av,ret_str);
+
+#ifdef DEBUG
+				printf("main: %s\n",ret_str);
+#endif				
+	
+				break;
+	
+
 			default:
 				break;
 			
@@ -187,6 +204,10 @@ int recgarg(char* arg){
 
 	if (strcmp(procarg,arg)==0)
 		return 10;
+
+	if (strcmp(sigarg,arg)==0)
+		return 11;
+
 
 
 

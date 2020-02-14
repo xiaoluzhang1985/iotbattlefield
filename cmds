@@ -17,12 +17,12 @@ lat_fs		*			*
 lat_mem_rd	*
 lat_mmap	*
 lat_ops		*			*
-lat_pagefault	*
+lat_pagefault	*			requires a large file
 lat_pipe	*	*		*
 lat_proc	*			*
 lat_rpc		*
 lat_select	*	*		*
-lat_sig		*
+lat_sig		*			*
 lat_syscall	*
 lat_tcp		*
 lat_udp		*
@@ -46,10 +46,10 @@ mhz		*	*
 par_mem		*	*
 par_ops		*	*
 stream		*	*
-tlb		*	*
+tlb		*	*		outputs how many pages
 msleep
 lmbench
 lmdd					*
 lmhttp
 memsize
-
+./c	
