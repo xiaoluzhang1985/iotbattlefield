@@ -22,7 +22,7 @@ char *opsarg="lat_ops";
 char *fcntlarg="lat_fcntl";
 char *fifoarg="lat_fifo";
 char *fsarg="lat_fs";
-
+char *procarg="lat_proc";
 void main(int argc, char* argv[]){
 	int args;
 	int ar;
@@ -130,7 +130,17 @@ void main(int argc, char* argv[]){
 	
 				break;
 				
-
+			case 10://lat_proc
+		
+				ar=2;
+				char* lat_proc_av[]={procarg, "exec"};//fork+exec
+				lat_proc(ar,lat_proc_av,ret_str);
+#ifdef DEBUG
+				printf("main: %s\n",ret_str);
+#endif				
+	
+				break;
+	
 			default:
 				break;
 			
@@ -174,6 +184,9 @@ int recgarg(char* arg){
 
 	if (strcmp(fsarg,arg)==0)
 		return 9;
+
+	if (strcmp(procarg,arg)==0)
+		return 10;
 
 
 
