@@ -1,4 +1,4 @@
-		doc	non-para	done
+		doc	non-arg		done
 bw_file_rd	*
 bw_mem		
 	-bw_mem_cp

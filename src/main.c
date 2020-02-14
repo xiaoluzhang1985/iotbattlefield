@@ -24,6 +24,7 @@ char *fifoarg="lat_fifo";
 char *fsarg="lat_fs";
 char *procarg="lat_proc";
 char *sigarg="lat_sig";
+char *syscallarg="lat_syscall";
 
 void main(int argc, char* argv[]){
 	int args;
@@ -157,6 +158,32 @@ void main(int argc, char* argv[]){
 	
 				break;
 	
+			case 12://lat_syscall
+		
+				ar=2;
+				char* lat_syscall_null_av[]={syscallarg, "null"};
+				char* lat_syscall_read_av[]={syscallarg, "read"};
+				char* lat_syscall_write_av[]={syscallarg, "write"};
+				char* lat_syscall_stat_av[]={syscallarg, "stat"};
+				char* lat_syscall_fstat_av[]={syscallarg, "fstat"};
+				char* lat_syscall_open_av[]={syscallarg, "open"};
+
+	
+
+				lat_syscall(ar,lat_syscall_null_av,ret_str);
+				lat_syscall(ar,lat_syscall_read_av,ret_str);
+				lat_syscall(ar,lat_syscall_write_av,ret_str);
+				lat_syscall(ar,lat_syscall_stat_av,ret_str);
+				lat_syscall(ar,lat_syscall_fstat_av,ret_str);
+				lat_syscall(ar,lat_syscall_open_av,ret_str);
+
+#ifdef DEBUG
+				printf("main: %s\n",ret_str);
+#endif				
+	
+				break;
+	
+
 
 			default:
 				break;
@@ -207,6 +234,10 @@ int recgarg(char* arg){
 
 	if (strcmp(sigarg,arg)==0)
 		return 11;
+	
+	if (strcmp(syscallarg,arg)==0)
+		return 12;
+
 
 
 
