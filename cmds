@@ -23,8 +23,8 @@ lat_proc	*			*
 lat_rpc		*
 lat_select	*	*		*
 lat_sig		*			*
-lat_syscall	*
-lat_tcp		*
+lat_syscall	*			*
+lat_tcp		*			*
 lat_udp		*
 lat_unix	*
 lat_unix_connect*

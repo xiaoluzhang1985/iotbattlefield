@@ -25,6 +25,8 @@ char *fsarg="lat_fs";
 char *procarg="lat_proc";
 char *sigarg="lat_sig";
 char *syscallarg="lat_syscall";
+char *tcparg="lat_tcp";
+char *unixarg="lat_unix";
 
 void main(int argc, char* argv[]){
 	int args;
@@ -182,9 +184,35 @@ void main(int argc, char* argv[]){
 #endif				
 	
 				break;
+			case 13://lat_tcp
+		
+				ar=2;
+			//	char* lat_tcp_server_av[]={tcparg, "-s"};//lat_tcp -s
+				char* lat_tcp_localhost_av[]={tcparg, "localhost"};//lat_tcp localhost
+			//	char* lat_tcp_shotdown_av[]={tcparg, "-S","localhost"};//lat_tcp -S localhost
+			//	lat_tcp(ar,lat_tcp_server_av,ret_str);
+				lat_tcp(ar,lat_tcp_localhost_av,ret_str);
+				ar=3;
+				
+			//	lat_tcp(ar,lat_tcp_shotdown_av,ret_str);
+#ifdef DEBUG
+				printf("main: %s\n",ret_str);
+#endif			
+				break;
+			
+			case 14://lat_unix
+		
+				ar=1;
+				char* lat_unix_av[]={unixarg};
+				lat_unix(ar,lat_unix_av,ret_str);
+#ifdef DEBUG
+				printf("main: %s\n",ret_str);
+#endif				
+	
+				break;
 	
 
-
+		
 			default:
 				break;
 			
@@ -237,6 +265,14 @@ int recgarg(char* arg){
 	
 	if (strcmp(syscallarg,arg)==0)
 		return 12;
+
+	if (strcmp(tcparg,arg)==0)
+		return 13;
+
+	if (strcmp(unixarg,arg)==0)
+		return 14;
+
+
 
 
 

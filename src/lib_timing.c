@@ -1028,13 +1028,16 @@ micro(char *s, uint64 n, char* ret)
 	tvsub(&td, &stop_tv, &start_tv);
 	micro = td.tv_sec * 1000000 + td.tv_usec;
 	micro /= n;
+	
 	if (micro == 0.0) return;
 	if (!ftiming) ftiming = stderr;
 	sprintf(str, "%s: %.4f microseconds\n", s, micro);
+	
 	strncat(ret,str,strlen(str));
 	free(str);
 
 #if 0
+	
 	if (micro >= 100) {
 		fprintf(ftiming, "%s: %.1f microseconds\n", s, micro);
 	} else if (micro >= 10) {
