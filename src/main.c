@@ -27,6 +27,7 @@ char *sigarg="lat_sig";
 char *syscallarg="lat_syscall";
 char *tcparg="lat_tcp";
 char *unixarg="lat_unix";
+char *connectarg="lat_connect";
 
 void main(int argc, char* argv[]){
 	int args;
@@ -211,6 +212,18 @@ void main(int argc, char* argv[]){
 	
 				break;
 	
+			case 15://lat_connect
+		
+				ar=2;
+				char* lat_connect_av[]={connectarg,"localhost"};
+				lat_connect(ar,lat_connect_av,ret_str);
+#ifdef DEBUG
+				printf("main: %s\n",ret_str);
+#endif				
+	
+				break;
+	
+
 
 		
 			default:
@@ -271,6 +284,10 @@ int recgarg(char* arg){
 
 	if (strcmp(unixarg,arg)==0)
 		return 14;
+
+	if (strcmp(connectarg,arg)==0)
+		return 15;
+
 
 
 

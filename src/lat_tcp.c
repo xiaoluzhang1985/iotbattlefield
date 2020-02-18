@@ -87,7 +87,7 @@ lat_tcp(int ac, char **av, char *retd)
 	
 	micro(buf, get_n(),retd);
 
-	return 0;
+	return (0);
 }
 
 void

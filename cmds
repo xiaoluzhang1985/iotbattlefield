@@ -1,13 +1,6 @@
 		doc	non-arg		done
-bw_file_rd	*
-bw_mem		
-	-bw_mem_cp
-	-bw_mem_rd
-	-bw_mem_wr
-bw_mmap_rd	*
-bw_pipe		*	*	
-bw_tcp		*
-bw_unix		*	*
+
+-------------------------------latency---------------------------
 
 lat_connect	*
 lat_ctx		*
@@ -26,7 +19,7 @@ lat_sig		*			*
 lat_syscall	*			*
 lat_tcp		*			*
 lat_udp		*
-lat_unix	*
+lat_unix	*			*
 lat_unix_connect*
 lat_usleep
 lat_cmd	
@@ -35,6 +28,20 @@ lat_pmake
 lat_rand		*		*
 lat_http
 lat_dram_page
+
+-------------------------------bandwidth---------------------------
+bw_file_rd	*
+bw_mem		
+	-bw_mem_cp
+	-bw_mem_rd
+	-bw_mem_wr
+bw_mmap_rd	*
+bw_pipe		*	*	
+bw_tcp		*
+bw_unix		*	*
+
+-------------------------------resource---------------------------
+
 
 cache		*	*
 disk

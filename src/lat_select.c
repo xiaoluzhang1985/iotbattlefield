@@ -94,7 +94,7 @@ lat_select(int ac, char **av, char* retd)
 		lmbench_usage(ac, av, usage);
 	}
 
-	return 0;
+	return (0);
 }
 	
 void
