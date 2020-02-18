@@ -2,25 +2,25 @@
 
 -------------------------------latency---------------------------
 
-lat_connect	*
-lat_ctx		*
+lat_ctx		*			unknown time measurement for now
 lat_fcntl	*	*		*	
 lat_fifo	*	*		*	
 lat_fs		*			*	
 lat_mem_rd	*
-lat_mmap	*
+lat_mmap	*			for sunOS style shared libaries 
 lat_ops		*			*
 lat_pagefault	*			requires a large file
 lat_pipe	*	*		*
 lat_proc	*			*
-lat_rpc		*
+lat_rpc		*			later
 lat_select	*	*		*
 lat_sig		*			*
 lat_syscall	*			*
+lat_connect	*			*
 lat_tcp		*			*
-lat_udp		*
+lat_udp		*			later
 lat_unix	*			*
-lat_unix_connect*
+lat_unix_connect*			*
 lat_usleep
 lat_cmd	
 lat_sem			*		*

@@ -28,6 +28,8 @@ char *syscallarg="lat_syscall";
 char *tcparg="lat_tcp";
 char *unixarg="lat_unix";
 char *connectarg="lat_connect";
+char *unixconnarg="lat_unix_connect";
+char *usleeparg="lat_usleep";
 
 void main(int argc, char* argv[]){
 	int args;
@@ -223,6 +225,38 @@ void main(int argc, char* argv[]){
 	
 				break;
 	
+			case 16://lat_unix_connect
+		
+				ar=2;
+				char* lat_unixconn_server_av[]={unixconnarg, "-s"};//lat_tcp -s
+				lat_unix_connect(ar,lat_unixconn_server_av,ret_str);
+			
+				ar=1;
+				char* lat_unixconn_localhost_av[]={unixconnarg};//lat_tcp localhost
+				lat_unix_connect(ar,lat_unixconn_localhost_av,ret_str);
+				
+				ar=2;
+				char* lat_unixconn_shotdown_av[]={unixconnarg, "-S"};//lat_tcp -S localhost
+				lat_unix_connect(ar,lat_unixconn_shotdown_av,ret_str);
+#ifdef DEBUG
+				printf("main: %s\n",ret_str);
+#endif			
+				break;	
+
+			case 17://lat_usleep
+		
+				ar=2;
+				char* lat_usleep_av[]={usleeparg,"1000"};
+				lat_usleep(ar,lat_usleep_av,ret_str);
+				
+				ar=4;
+				char* lat_itimer_av[]={usleeparg,"-u","itimer","1000"};
+				lat_usleep(ar,lat_itimer_av,ret_str);
+#ifdef DEBUG
+				printf("main: %s\n",ret_str);
+#endif				
+	
+				break;
 
 
 		
@@ -234,7 +268,8 @@ void main(int argc, char* argv[]){
 	//printf("%s",ret_str);
 	//printf("length %d",strlen(ret_str));
 	send2srv(ret_str);
-	free(ret_str);		
+	free(ret_str);
+	exit(0);
 }
 
 int recgarg(char* arg){
@@ -288,6 +323,11 @@ int recgarg(char* arg){
 	if (strcmp(connectarg,arg)==0)
 		return 15;
 
+	if (strcmp(unixconnarg,arg)==0)
+		return 16;
+
+	if (strcmp(usleeparg,arg)==0)
+		return 17;
 
 
 
