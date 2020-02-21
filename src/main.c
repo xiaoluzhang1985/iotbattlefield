@@ -30,12 +30,13 @@ char *unixarg="lat_unix";
 char *connectarg="lat_connect";
 char *unixconnarg="lat_unix_connect";
 char *usleeparg="lat_usleep";
+char *memrdarg="lat_mem_rd";
 
 void main(int argc, char* argv[]){
 	int args;
 	int ar;
 
-	char* ret_str=(char *)malloc(800);
+	char* ret_str=(char *)malloc(4096);
 
 	for(args=1; args < argc ;args++){
 
@@ -258,6 +259,18 @@ void main(int argc, char* argv[]){
 	
 				break;
 
+			case 18://lat_mem_rd: array stride
+		
+				ar=3;
+				char* lat_memrd_av[]={memrdarg,"1","1"};
+				lat_mem_rd(ar,lat_memrd_av,ret_str);
+#ifdef DEBUG
+				printf("main: %s\n",ret_str);
+#endif				
+	
+				break;
+	
+
 
 		
 			default:
@@ -329,10 +342,8 @@ int recgarg(char* arg){
 	if (strcmp(usleeparg,arg)==0)
 		return 17;
 
-
-
-
-
+	if (strcmp(memrdarg,arg)==0)
+		return 18;
 
 
 	//else if(!strcmp(cmd,arg)){
