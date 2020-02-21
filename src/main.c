@@ -31,7 +31,7 @@ char *connectarg="lat_connect";
 char *unixconnarg="lat_unix_connect";
 char *usleeparg="lat_usleep";
 char *memrdarg="lat_mem_rd";
-
+char *drampagearg="lat_dram_page";
 void main(int argc, char* argv[]){
 	int args;
 	int ar;
@@ -269,6 +269,17 @@ void main(int argc, char* argv[]){
 #endif				
 	
 				break;
+			
+			case 19://lat_mem_rd: array stride
+		
+				ar=1;
+				char* lat_drampage_av[]={drampagearg};
+				lat_dram_page(ar,lat_drampage_av,ret_str);
+#ifdef DEBUG
+				printf("main: %s\n",ret_str);
+#endif				
+	
+				break;
 	
 
 
@@ -344,6 +355,9 @@ int recgarg(char* arg){
 
 	if (strcmp(memrdarg,arg)==0)
 		return 18;
+
+	if (strcmp(drampagearg,arg)==0)
+		return 19;
 
 
 	//else if(!strcmp(cmd,arg)){

@@ -1,8 +1,8 @@
 tmp=./tmp
 
 
-main server:server.c main.o lmdd.o lib_sched.o lib_timing.o lat_pipe.o getopt.o lat_select.o lib_tcp.o lat_sem.o lat_rand.o lat_ops.o lat_fcntl.o lat_fifo.o lat_fs.o lat_proc.o lat_sig.o lat_syscall.o lat_tcp.o lat_unix.o lat_connect.o lat_unix_connect.o lib_unix.o lat_usleep.o lib_mem.o lat_mem_rd.o
-	@gcc -m32 ${tmp}/main.o ${tmp}/lmdd.o ${tmp}/lib_timing.o ${tmp}/lib_sched.o ${tmp}/lat_pipe.o ${tmp}/getopt.o ${tmp}/lat_select.o ${tmp}/lib_tcp.o ${tmp}/lat_sem.o ${tmp}/lat_rand.o ${tmp}/lat_ops.o ${tmp}/lat_fcntl.o ${tmp}/lat_fifo.o ${tmp}/lat_fs.o ${tmp}/lat_proc.o ${tmp}/lat_sig.o ${tmp}/lat_syscall.o ${tmp}/lat_tcp.o ${tmp}/lat_unix.o ${tmp}/lat_connect.o ${tmp}/lat_unix_connect.o ${tmp}/lib_unix.o ${tmp}/lat_usleep.o ${tmp}/lib_mem.o ${tmp}/lat_mem_rd.o -o ./bin/main
+main server:server.c main.o lmdd.o lib_sched.o lib_timing.o lat_pipe.o getopt.o lat_select.o lib_tcp.o lat_sem.o lat_rand.o lat_ops.o lat_fcntl.o lat_fifo.o lat_fs.o lat_proc.o lat_sig.o lat_syscall.o lat_tcp.o lat_unix.o lat_connect.o lat_unix_connect.o lib_unix.o lat_usleep.o lib_mem.o lat_mem_rd.o lat_dram_page.o
+	@gcc -m32 ${tmp}/main.o ${tmp}/lmdd.o ${tmp}/lib_timing.o ${tmp}/lib_sched.o ${tmp}/lat_pipe.o ${tmp}/getopt.o ${tmp}/lat_select.o ${tmp}/lib_tcp.o ${tmp}/lat_sem.o ${tmp}/lat_rand.o ${tmp}/lat_ops.o ${tmp}/lat_fcntl.o ${tmp}/lat_fifo.o ${tmp}/lat_fs.o ${tmp}/lat_proc.o ${tmp}/lat_sig.o ${tmp}/lat_syscall.o ${tmp}/lat_tcp.o ${tmp}/lat_unix.o ${tmp}/lat_connect.o ${tmp}/lat_unix_connect.o ${tmp}/lib_unix.o ${tmp}/lat_usleep.o ${tmp}/lib_mem.o ${tmp}/lat_mem_rd.o ${tmp}/lat_dram_page.o -o ./bin/main
 	
 	@gcc server.c -o ./bin/server
 main.o:main.c headers.h
@@ -80,4 +80,5 @@ lib_mem.o: lib_mem.c
 lat_mem_rd.o: lat_mem_rd.c
 	@gcc -m32 -c lat_mem_rd.c -o ${tmp}/lat_mem_rd.o
 
-
+lat_dram_page.o: lat_dram_page.c
+	@gcc -m32 -c lat_dram_page.c -o ${tmp}/lat_dram_page.o

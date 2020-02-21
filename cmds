@@ -6,8 +6,8 @@ lat_ctx		*			unknown time measurement for now
 lat_fcntl	*	*		*	
 lat_fifo	*	*		*	
 lat_fs		*			*	
-lat_mem_rd	*
-lat_mmap	*			for sunOS style shared libaries 
+lat_mem_rd	*			*
+lat_mmap	*			for sunOS style shared libaries only.
 lat_ops		*			*
 lat_pagefault	*			requires a large file
 lat_pipe	*	*		*
@@ -21,10 +21,10 @@ lat_tcp		*			*
 lat_udp		*			later
 lat_unix	*			*
 lat_unix_connect*			*
-lat_usleep
+lat_usleep				*
 lat_cmd	
 lat_sem			*		*
-lat_pmake
+lat_pmake				mistery output
 lat_rand		*		*
 lat_http
 lat_dram_page
