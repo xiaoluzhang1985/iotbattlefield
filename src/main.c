@@ -35,6 +35,7 @@ char *drampagearg="lat_dram_page";
 char *pmakearg="lat_pmake";
 char *ctxarg="lat_ctx";
 char *mmaparg="lat_mmap";
+char *cmdarg="lat_cmd";
 
 void main(int argc, char* argv[]){
 	int args;
@@ -318,6 +319,16 @@ void main(int argc, char* argv[]){
 	
 				break;
 
+			case 23://lat_cmd
+		
+				ar=2;
+				char* lat_cmd_av[]={cmdarg,"cp"};
+				lat_cmd(ar,lat_cmd_av,ret_str);
+#ifdef DEBUG
+				printf("main: %s\n",ret_str);
+#endif				
+	
+				break;
 
 		
 			default:
@@ -403,6 +414,9 @@ int recgarg(char* arg){
 
 	if (strcmp(mmaparg,arg)==0)
 		return 22;
+	
+	if (strcmp(cmdarg,arg)==0)
+		return 23;
 
 	//else if(!strcmp(cmd,arg)){
 	//	
