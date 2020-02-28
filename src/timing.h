@@ -21,7 +21,7 @@ char	last(char *s);
 void	latency(uint64 xfers, uint64 size);
 void	mb(uint64 bytes);
 void	micro(char *s, uint64 n, char* ret);
-void	micromb(uint64 mb, uint64 n);
+void	micromb(uint64 mb, uint64 n, char* ret);
 void	milli(char *s, uint64 n);
 void	morefds(void);
 void	nano(char *s, uint64 ni, char* ret);

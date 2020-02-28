@@ -1049,11 +1049,11 @@ micro(char *s, uint64 n, char* ret)
 }
 
 void
-micromb(uint64 sz, uint64 n)
+micromb(uint64 sz, uint64 n, char* ret)
 {
 	struct timeval td;
 	double	mb, micro;
-
+	char* str = (char*)malloc(100);
 	tvsub(&td, &stop_tv, &start_tv);
 	micro = td.tv_sec * 1000000 + td.tv_usec;
 	micro /= n;
@@ -1062,10 +1062,12 @@ micromb(uint64 sz, uint64 n)
 	if (micro == 0.0) return;
 	if (!ftiming) ftiming = stderr;
 	if (micro >= 10) {
-		fprintf(ftiming, "%.6f %.0f\n", mb, micro);
+		sprintf(str, "%.6fmb costed %.0fmicrosecs\n", mb, micro);
 	} else {
-		fprintf(ftiming, "%.6f %.3f\n", mb, micro);
+		sprintf(str, "%.6fmb costed %.3fmicrosecs\n", mb, micro);
 	}
+	strncat(ret, str, strlen(str));
+	free(str);
 }
 
 void

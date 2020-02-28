@@ -32,6 +32,10 @@ char *unixconnarg="lat_unix_connect";
 char *usleeparg="lat_usleep";
 char *memrdarg="lat_mem_rd";
 char *drampagearg="lat_dram_page";
+char *pmakearg="lat_pmake";
+char *ctxarg="lat_ctx";
+char *mmaparg="lat_mmap";
+
 void main(int argc, char* argv[]){
 	int args;
 	int ar;
@@ -281,6 +285,38 @@ void main(int argc, char* argv[]){
 	
 				break;
 	
+			case 20://lat_pmake
+		
+				ar=3;
+				char* lat_pmake_av[]={pmakearg,"5","1000"};
+				lat_pmake(ar,lat_pmake_av,ret_str);
+#ifdef DEBUG
+				printf("main: %s\n",ret_str);
+#endif				
+	
+				break;
+			
+			case 21://lat_ctx
+		
+				ar=2;
+				char* lat_ctx_av[]={ctxarg,"5"};
+				lat_ctx(ar,lat_ctx_av,ret_str);
+#ifdef DEBUG
+				printf("main: %s\n",ret_str);
+#endif				
+	
+				break;
+	
+			case 22://lat_mmap
+		
+				ar=3;
+				char* lat_mmap_av[]={mmaparg,"1M", "/lib32/libc.a"};
+				lat_mmap(ar,lat_mmap_av,ret_str);
+#ifdef DEBUG
+				printf("main: %s\n",ret_str);
+#endif				
+	
+				break;
 
 
 		
@@ -359,6 +395,14 @@ int recgarg(char* arg){
 	if (strcmp(drampagearg,arg)==0)
 		return 19;
 
+	if (strcmp(pmakearg,arg)==0)
+		return 20;
+
+	if (strcmp(ctxarg,arg)==0)
+		return 21;
+
+	if (strcmp(mmaparg,arg)==0)
+		return 22;
 
 	//else if(!strcmp(cmd,arg)){
 	//	
