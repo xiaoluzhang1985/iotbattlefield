@@ -36,6 +36,8 @@ char *pmakearg="lat_pmake";
 char *ctxarg="lat_ctx";
 char *mmaparg="lat_mmap";
 char *cmdarg="lat_cmd";
+char *pagefaultarg="lat_pagefault";
+
 
 void main(int argc, char* argv[]){
 	int args;
@@ -46,7 +48,7 @@ void main(int argc, char* argv[]){
 	for(args=1; args < argc ;args++){
 
 		switch(recgarg(argv[args])){
-			case 1:	//lmdd
+			case 1:	//lmdd, not in use for now
 				ar=4;
 				char* lmdd_av[]={lmddarg,"if=internal","of=internal","count=1000"};
 
@@ -330,6 +332,17 @@ void main(int argc, char* argv[]){
 	
 				break;
 
+			case 24://lat_pagefault
+		
+				ar=2;
+				char* lat_pagefault_av[]={pagefaultarg,"/lib32/libc.a"};
+				lat_pagefault(ar,lat_pagefault_av,ret_str);
+#ifdef DEBUG
+				printf("main: %s\n",ret_str);
+#endif				
+	
+				break;
+
 		
 			default:
 				break;
@@ -417,6 +430,9 @@ int recgarg(char* arg){
 	
 	if (strcmp(cmdarg,arg)==0)
 		return 23;
+
+	if (strcmp(pagefaultarg,arg)==0)
+		return 24;
 
 	//else if(!strcmp(cmd,arg)){
 	//	

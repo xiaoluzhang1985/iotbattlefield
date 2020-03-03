@@ -2,14 +2,14 @@
 
 -------------------------------latency---------------------------
 
-lat_ctx		*			*  	#gettime() returns millisec
+lat_ctx		*			*  	# gettime() returns millisec
 lat_fcntl	*	*		*	
 lat_fifo	*	*		*	
 lat_fs		*			*	
 lat_mem_rd	*			*
-lat_mmap	*			*	#mapping xmb data from filey to memory (hard-coded mapping file /lib32/labc.a)
+lat_mmap	*			*	# mapping xmb data from filey to memory (hard-coded mapping file /lib32/libc.a)
 lat_ops		*			*
-lat_pagefault	*			requires a large file
+lat_pagefault	*			*	# hard-coded file /lib32/libc.a
 lat_pipe	*	*		*
 lat_proc	*			*
 lat_rpc		*			later
@@ -24,7 +24,7 @@ lat_unix_connect*			*
 lat_usleep				*
 lat_cmd					*	
 lat_sem			*		*
-lat_pmake				* 	#mistery output, (embedded but have not fixed yet)
+lat_pmake				* 	# mistery output, (embedded but have not fixed yet)
 lat_rand		*		*
 lat_http				later
 lat_dram_page				*
