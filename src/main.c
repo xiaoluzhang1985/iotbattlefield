@@ -37,8 +37,8 @@ char *ctxarg="lat_ctx";
 char *mmaparg="lat_mmap";
 char *cmdarg="lat_cmd";
 char *pagefaultarg="lat_pagefault";
-
-
+char *udparg="lat_udp";
+char *udparg2="lat_udp2";
 void main(int argc, char* argv[]){
 	int args;
 	int ar;
@@ -343,7 +343,23 @@ void main(int argc, char* argv[]){
 	
 				break;
 
-		
+			case 25://lat_udp
+;
+				ar=2;
+				char* lat_udps_av[]={udparg, "-s"};
+				lat_udp(ar,lat_udps_av,NULL);
+				char* lat_udpc_av[]={udparg, "localhost"};
+				lat_udp(ar,lat_udpc_av,ret_str);
+				ar=3;
+				char* lat_udpS_av[]={udparg, "-S", "localhost"};
+				lat_udp(ar,lat_udpS_av,NULL);
+				
+#ifdef DEBUG	
+				printf("main: %s\n",ret_str);
+#endif				
+	
+				break;
+
 			default:
 				break;
 			
@@ -434,6 +450,8 @@ int recgarg(char* arg){
 	if (strcmp(pagefaultarg,arg)==0)
 		return 24;
 
+	if (strcmp(udparg,arg)==0)
+		return 25;
 	//else if(!strcmp(cmd,arg)){
 	//	
 	//}

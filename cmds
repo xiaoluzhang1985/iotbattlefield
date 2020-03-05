@@ -17,8 +17,8 @@ lat_select	*	*		*
 lat_sig		*			*
 lat_syscall	*			*
 lat_connect	*			*
-lat_tcp		*			*
-lat_udp		*			later
+lat_tcp		*			*	# localhost server
+lat_udp		*			*	# localhost server
 lat_unix	*			*
 lat_unix_connect*			*
 lat_usleep				*
