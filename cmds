@@ -12,7 +12,7 @@ lat_ops		*			*
 lat_pagefault	*			*	# hard-coded file /lib32/libc.a
 lat_pipe	*	*		*
 lat_proc	*			*
-lat_rpc		*			later
+lat_rpc		*			*	#rpc should be enabled first (#apt-get install rpcbind)
 lat_select	*	*		*
 lat_sig		*			*
 lat_syscall	*			*

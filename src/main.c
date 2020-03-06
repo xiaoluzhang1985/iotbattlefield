@@ -38,7 +38,8 @@ char *mmaparg="lat_mmap";
 char *cmdarg="lat_cmd";
 char *pagefaultarg="lat_pagefault";
 char *udparg="lat_udp";
-char *udparg2="lat_udp2";
+char *rpcarg="lat_rpc";
+
 void main(int argc, char* argv[]){
 	int args;
 	int ar;
@@ -344,7 +345,6 @@ void main(int argc, char* argv[]){
 				break;
 
 			case 25://lat_udp
-;
 				ar=2;
 				char* lat_udps_av[]={udparg, "-s"};
 				lat_udp(ar,lat_udps_av,NULL);
@@ -353,6 +353,22 @@ void main(int argc, char* argv[]){
 				ar=3;
 				char* lat_udpS_av[]={udparg, "-S", "localhost"};
 				lat_udp(ar,lat_udpS_av,NULL);
+				
+#ifdef DEBUG	
+				printf("main: %s\n",ret_str);
+#endif				
+	
+				break;
+
+			case 26://lat_rpc
+				ar=2;
+				char* lat_rpcs_av[]={rpcarg, "-s"};
+				lat_rpc(ar,lat_rpcs_av,NULL);
+				char* lat_rpcc_av[]={rpcarg, "localhost"};
+				lat_rpc(ar,lat_rpcc_av,ret_str);
+				ar=3;
+				char* lat_rpcS_av[]={rpcarg, "-S", "localhost"};
+				lat_rpc(ar,lat_rpcS_av,NULL);
 				
 #ifdef DEBUG	
 				printf("main: %s\n",ret_str);
@@ -452,6 +468,10 @@ int recgarg(char* arg){
 
 	if (strcmp(udparg,arg)==0)
 		return 25;
+
+	if (strcmp(rpcarg,arg)==0)
+		return 26;
+
 	//else if(!strcmp(cmd,arg)){
 	//	
 	//}
