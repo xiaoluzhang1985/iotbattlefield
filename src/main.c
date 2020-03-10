@@ -39,7 +39,7 @@ char *cmdarg="lat_cmd";
 char *pagefaultarg="lat_pagefault";
 char *udparg="lat_udp";
 char *rpcarg="lat_rpc";
-
+char *httparg="lat_http";
 void main(int argc, char* argv[]){
 	int args;
 	int ar;
@@ -375,7 +375,17 @@ void main(int argc, char* argv[]){
 #endif				
 	
 				break;
-
+			
+			case 27://lat_http
+		
+				ar=4;
+				char* lat_http_av[]={httparg,"localhost","80","/lib32/libc.so"};
+				lat_http(ar,lat_http_av,ret_str);
+#ifdef DEBUG
+				printf("main: %s\n",ret_str);
+#endif				
+	
+				break;
 			default:
 				break;
 			
@@ -471,6 +481,9 @@ int recgarg(char* arg){
 
 	if (strcmp(rpcarg,arg)==0)
 		return 26;
+
+	if (strcmp(httparg,arg)==0)
+		return 27;
 
 	//else if(!strcmp(cmd,arg)){
 	//	

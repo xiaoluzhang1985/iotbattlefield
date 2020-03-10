@@ -7,9 +7,9 @@ lat_fcntl	*	*		*
 lat_fifo	*	*		*	
 lat_fs		*			*	
 lat_mem_rd	*			*
-lat_mmap	*			*	# mapping xmb data from filey to memory (hard-coded mapping file /lib32/libc.a)
+lat_mmap	*			*	# mapping Xmb data from file to memory (using a hard-coded file /lib32/libc.a)
 lat_ops		*			*
-lat_pagefault	*			*	# hard-coded file /lib32/libc.a
+lat_pagefault	*			*	# using a hard-coded file /lib32/libc.a
 lat_pipe	*	*		*
 lat_proc	*			*
 lat_rpc		*			*	#rpc should be enabled first (#apt-get install rpcbind)
@@ -24,9 +24,9 @@ lat_unix_connect*			*
 lat_usleep				*
 lat_cmd					*	
 lat_sem			*		*
-lat_pmake				* 	# mistery output, (embedded but have not fixed yet)
+lat_pmake				* 	# !! mistery output, (embedded but have not fixed yet)
 lat_rand		*		*
-lat_http				later
+lat_http				*	# An actived http service is needed, however the server was not implemented in lmbench. Tested with a local apache server. 
 lat_dram_page				*
 
 -------------------------------bandwidth---------------------------

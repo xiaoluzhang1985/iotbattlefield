@@ -695,7 +695,7 @@ done(void)
 	    	break;
 
 	    case 1:	/* latency type print out */
-		latency((uint64)(int_count / Bsize), (uint64)Bsize);
+		latency("",(uint64)(int_count / Bsize), (uint64)Bsize,NULL);
 		break;
 
 	    case 2:	/* microsecond per op print out */

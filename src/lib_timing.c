@@ -956,7 +956,7 @@ mb(uint64 bytes)
 }
 
 void
-latency(uint64 xfers, uint64 size)
+latency(char* istr, uint64 xfers, uint64 size, char* ret)
 {
 	struct timeval td;
 	double  s;
@@ -965,24 +965,35 @@ latency(uint64 xfers, uint64 size)
 	tvsub(&td, &stop_tv, &start_tv);
 	s = td.tv_sec + td.tv_usec / 1000000.0;
 	if (s == 0.0) return;
+	char * str=(char*)malloc(100);
+/*
+//output how large the file is in KB
 	if (xfers > 1) {
-		fprintf(ftiming, "%d %dKB xfers in %.2f secs, ",
+		sprintf(str, "%s: %d %dKB xfers in %.2f secs, ",istr,
 		    (int) xfers, (int) (size / KB), s);
 	} else {
-		fprintf(ftiming, "%.1fKB in ", size / KB);
+		sprintf(str, "%s: %.1fKB in ",istr, size / KB);
 	}
+
+//output how fast the transfer is in Millisec
+
 	if ((s * 1000 / xfers) > 100) {
-		fprintf(ftiming, "%.0f millisec%s, ",
+		sprintf(str, "%s: %.0f millisec%s, ",istr,
 		    s * 1000 / xfers, xfers > 1 ? "/xfer" : "s");
 	} else {
-		fprintf(ftiming, "%.4f millisec%s, ",
+		sprintf(str, "%s: %.4f millisec%s, ",istr,
 		    s * 1000 / xfers, xfers > 1 ? "/xfer" : "s");
 	}
+
+*/
 	if (((xfers * size) / (MB * s)) > 1) {
-		fprintf(ftiming, "%.2f MB/sec\n", (xfers * size) / (MB * s));
+		sprintf(str, "%s: %.2f MB/sec\n",istr, (xfers * size) / (MB * s));
 	} else {
-		fprintf(ftiming, "%.2f KB/sec\n", (xfers * size) / (KB * s));
+		sprintf(str, "%s: %.2f KB/sec\n",istr, (xfers * size) / (KB * s));
 	}
+
+	strncat(ret,str,strlen(str));
+	free(str);
 }
 
 void

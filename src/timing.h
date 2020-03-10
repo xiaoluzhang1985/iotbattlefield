@@ -18,7 +18,7 @@ uint64	get_n(void);
 void	kb(uint64 bytes);
 double	l_overhead(void);
 char	last(char *s);
-void	latency(uint64 xfers, uint64 size);
+void	latency(char* s,uint64 xfers, uint64 size,char* ret);
 void	mb(uint64 bytes);
 void	micro(char *s, uint64 n, char* ret);
 void	micromb(uint64 mb, uint64 n, char* ret);
